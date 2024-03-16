@@ -23,11 +23,14 @@ const Index = () => {
       return;
     }
 
-    // Simulating an API call to check online status
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}`;
+    const newWindow = window.open(whatsappUrl, "_blank");
+
     setTimeout(() => {
-      const randomStatus = Math.random() < 0.5;
-      setIsOnline(randomStatus);
-    }, 1500);
+      const isOnline = newWindow.document.querySelector(".online") !== null;
+      setIsOnline(isOnline);
+      newWindow.close();
+    }, 3000);
   };
 
   return (
